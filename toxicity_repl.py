@@ -28,9 +28,9 @@ class bcolors:
 
 
 def rating_to_string(rating: float) -> str:
-    # < 25
-    if rating < 0.25: return f"{bcolors.GREEN}Likely not toxic{bcolors.ENDC}"
-    # 25 - 60
+    # < 50
+    if rating < 0.5: return f"{bcolors.GREEN}Likely not toxic{bcolors.ENDC}"
+    # 50 - 60
     if rating < 0.60: return f"{bcolors.YELLOW}Unfriendly{bcolors.ENDC}"
     # 60 - 70
     if rating < 0.70: return f"{bcolors.YELLOW}{bcolors.BOLD}Fairly toxic{bcolors.ENDC}"

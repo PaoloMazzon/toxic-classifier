@@ -15,6 +15,14 @@ class ToxicityDetector:
         "dumbahh",
         "ahh",
         "ligma",
+        "fuck",
+        "shit",
+        "piss",
+        "ass",
+        "asshole",
+        "dick",
+        "bitch",
+        "cunt",
     ]
 
     def __init__(self, model_folder: str):
