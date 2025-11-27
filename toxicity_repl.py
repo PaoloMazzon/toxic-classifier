@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-import torch
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
-import transformers
+from TMP import ToxicityDetector
 
 class bcolors:
     ENDC = '\033[0m'
@@ -28,19 +26,6 @@ class bcolors:
     BRIGHT_CYAN = '\033[96m'
     BRIGHT_WHITE = '\033[97m'
 
-def run_query(model: torch.nn.Module, tokenizer: transformers.AutoTokenizer, query: str) -> str:
-    inputs = tokenizer(query, return_tensors="pt", padding=True, truncation=True, max_length=256)
-    with torch.no_grad():
-        outputs = model(**inputs)
-        score = outputs.logits.squeeze().item()
-        score = max(0, min(100, score))
-    return score
-
-def load_model(folder: str) -> tuple[torch.nn.Module, transformers.AutoTokenizer]:
-    tokenizer = AutoTokenizer.from_pretrained(folder)
-    model = AutoModelForSequenceClassification.from_pretrained(folder)
-    model.eval()
-    return (model, tokenizer)
 
 def rating_to_string(rating: float) -> str:
     # < 25
@@ -57,7 +42,7 @@ def rating_to_string(rating: float) -> str:
     return f"{bcolors.RED}{bcolors.BOLD}{bcolors.UNDERLINE}Extremely toxic{bcolors.ENDC}"
 
 def main():
-    model, tokenizer = load_model("model")
+    tmp = ToxicityDetector("model")
     repl_prompt = "=> "
 
     print("Welcome to the toxicity REPL. Type :q to quit, otherwise type your text you want to classify.")
@@ -67,7 +52,7 @@ def main():
         if prompt == ":q":
             break
 
-        rating = run_query(model, tokenizer, prompt)
+        rating = tmp.run_query(prompt)
         reply = rating_to_string(rating)
         print(f"{reply} ({rating * 100:.2f}%)")
 
