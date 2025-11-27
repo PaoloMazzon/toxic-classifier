@@ -24,6 +24,7 @@ class ToxicityDetector:
         "bitch",
         "cunt",
         "kys",
+        "ez",
     ]
 
     def __init__(self, model_folder: str):

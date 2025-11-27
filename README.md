@@ -14,3 +14,28 @@ this model is not suitable to check if a given string is toxic, but rather it
 is a good way to confirm that something is toxic if you already have suspicion
 that a given string is toxic (for example, if player A reports player B for 
 for toxicity and the input string is some chat from player B).
+
+## Reference for dataset copied here
+
+```
+@inproceedings{weld-etal-2021-conda,
+    title = "{CONDA}: a {CON}textual Dual-Annotated dataset for in-game toxicity understanding and detection",
+    author = "Weld, Henry  and
+      Huang, Guanghao  and
+      Lee, Jean  and
+      Zhang, Tongshu  and
+      Wang, Kunze  and
+      Guo, Xinghong  and
+      Long, Siqu  and
+      Poon, Josiah  and
+      Han, Caren",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.findings-acl.213",
+    doi = "10.18653/v1/2021.findings-acl.213",
+    pages = "2406--2416",
+}
+```
