@@ -52,7 +52,7 @@ def main():
         if prompt == ":q":
             break
 
-        rating = tmp.run_query(prompt)
+        rating = tmp.predicted_toxicity(prompt)
         reply = rating_to_string(rating)
         print(f"{reply} ({rating * 100:.2f}%)")
 

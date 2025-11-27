@@ -2,6 +2,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import transformers
 import numpy as np
+import re
 
 class ToxicityDetector:
     # Sample blacklist, this is not an effective blacklist
@@ -33,8 +34,13 @@ class ToxicityDetector:
         return score
 
     # Returns the highest similarity between the word and something in the blacklist
-    def __highest_similarity(self, word: str) -> float:
-        pass
+    def __highest_similarity(self, query: str) -> float:
+        highest = 0
+        for word in re.split(r"[_\s]+", query):
+            for black_word in self.BLACKLIST:
+                sim = self.__word_similarity(black_word, word)
+                highest = max(sim, highest)
+        return highest
 
     # Returns similarity between two words, accounting for intentional obfuscation
     def __word_similarity(self, word1: str, word2: str) -> float:
